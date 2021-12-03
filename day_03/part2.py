@@ -11,18 +11,12 @@ def main():
     oxygen = problem
     co2 = problem
     for i in range(0, len(problem[0])):
-        if most_common(oxygen, i, "1"):
-            oxygen = [s for s in oxygen if s[i] == "1"]
-        else:
-            oxygen = [s for s in oxygen if s[i] == "0"]
+        oxygen = [s for s in oxygen if s[i] == str(int(most_common(oxygen, i, "1")))]
         if len(oxygen) == 1:
             break
 
     for i in range(0, len(problem[0])):
-        if not most_common(co2, i, "1"):
-            co2 = [s for s in co2 if s[i] == "1"]
-        else:
-            co2 = [s for s in co2 if s[i] == "0"]
+        co2 = [s for s in co2 if s[i] == str(int(not most_common(co2, i, "1")))]
         if len(co2) == 1:
             break
 
