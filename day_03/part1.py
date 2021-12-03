@@ -13,9 +13,7 @@ def main():
     for i in range(0, len(problem[0])):
         gamma += str(int(most_common(problem, i, "1")))
         epsilon += str(int(most_common(problem, i, "0")))
-    gamma = int(gamma, 2)
-    epsilon = int(epsilon, 2)
-    print("Part1 Answer: %s" % (gamma * epsilon))
+    print("Part1 Answer: %s" % (int(gamma, 2) * int(epsilon, 2)))
 
 
 if __name__ == '__main__':
