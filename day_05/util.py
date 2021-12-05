@@ -8,24 +8,24 @@ def calculate_line_points(line: str, diags=False) -> List[Tuple[int, int]]:
     startx, starty = [int(x) for x in start.split(",")]
     stopx, stopy = [int(x) for x in stop.split(",")]
     points = []
+    xstep = ystep = steps = 0
+    valid_line = False
     if startx == stopx:
-        length = stopy - starty
-        minv = min(0, length)
-        maxv = max(0, length)
-        for i in range(minv, maxv+1):
-            points.append((startx, starty+i))
+        valid_line = True
+        steps = abs(stopy - starty)
+        ystep = (stopy - starty) / steps
     elif starty == stopy:
-        length = stopx - startx
-        minv = min(0, length)
-        maxv = max(0, length)
-        for i in range(minv, maxv+1):
-            points.append((startx+i, starty))
+        valid_line = True
+        steps = abs(stopx - startx)
+        xstep = (stopx - startx) / steps
     elif diags:
+        valid_line = True
         steps = abs(stopx - startx)
         ystep = (stopy - starty) / steps
         xstep = (stopx - startx) / steps
-        for i in range(0, steps+1):
-            points.append((startx+(xstep * i), starty+(ystep * i)))
+    if valid_line:
+        for i in range(0, steps + 1):
+            points.append((startx + xstep * i, starty + ystep * i))
     return points
 
 
